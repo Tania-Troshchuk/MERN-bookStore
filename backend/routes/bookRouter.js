@@ -1,5 +1,5 @@
 import express from "express";
-import { Book } from "../models/bookModel.js";
+import { Book, bookValidation } from "../models/bookModel.js";
 import { asyncMiddleware } from "../middleware/asyncMiddleware.js";
 const bookRouter = express.Router()
 
@@ -23,16 +23,19 @@ bookRouter.get('/:id', asyncMiddleware(async (req, res) => {
 }))
 
 bookRouter.post('/', asyncMiddleware(async (req, res) => {
-  if (!(req.body.title && req.body.author && req.body.publishYear)) {
+  const errorMessage = bookValidation(req, true)
+
+  if (errorMessage) {
     return res.status(400).send({
-      message: "Send all required fields: title, author, publish year"
+      message: errorMessage
     })
   }
 
   const newBook = {
     title: req.body.title,
     author: req.body.author,
-    publishYear: req.body.publishYear
+    publishYear: req.body.publishYear,
+    description: req.body.description ?? null
   }
 
   const book = await Book.create(newBook)
@@ -41,6 +44,14 @@ bookRouter.post('/', asyncMiddleware(async (req, res) => {
 }))
 
 bookRouter.put('/:id', asyncMiddleware(async (req, res) => {
+  const errorMessage = bookValidation(req)
+
+  if (errorMessage) {
+    return res.status(400).send({
+      message: errorMessage
+    })
+  }
+
   const result = await Book.findByIdAndUpdate(
     req.params.id,
     req.body,
