@@ -8,7 +8,7 @@ export const BookModal = ({ book, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative"
+        className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 m-4 flex flex-col relative"
         onClick={e => e.stopPropagation()}
       >
         <AiOutlineClose
