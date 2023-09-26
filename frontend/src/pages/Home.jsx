@@ -9,7 +9,6 @@ import { BooksCard } from "../components/home/BooksCard"
 export const Home = () => {
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(false)
-
   const { pathname } = useLocation()
 
   useEffect(() => {
@@ -23,12 +22,11 @@ export const Home = () => {
   }, [])
 
   return (
-    <div className="p-4">
+    <div className="m-4">
       <div className="flex justify-center items-center gap-x-4">
         <NavLink
           to="/"
-          className={({ isActive }) => `${
-            isActive ? 'bg-sky-500 border-2 border-gray-500' : 'bg-sky-300'} hover:bg-sky-600 px-4 py-1 rounded-lg`
+          className={({ isActive }) => `${isActive ? 'bg-sky-500 border-2 border-gray-500' : 'bg-sky-300'} hover:bg-sky-600 px-4 py-1 rounded-lg`
           }
         >
           Table
@@ -36,8 +34,7 @@ export const Home = () => {
 
         <NavLink
           to="/cards"
-          className={({ isActive }) => `${
-            isActive ? 'bg-sky-500 border-2 border-gray-500' : 'bg-sky-300'} hover:bg-sky-600 px-4 py-1 rounded-lg`
+          className={({ isActive }) => `${isActive ? 'bg-sky-500 border-2 border-gray-500' : 'bg-sky-300'} hover:bg-sky-600 px-4 py-1 rounded-lg`
           }
         >
           Card
@@ -45,17 +42,22 @@ export const Home = () => {
       </div>
 
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl my-8">Books List</h1>
+        <h1 className="text-3xl my-8 mx-4">Books List</h1>
 
         <Link to="/books/create">
-          <MdOutlineAddBox className="text-sky-800 text-4xl" />
+          <MdOutlineAddBox className="text-sky-800 text-4xl mx-4" />
         </Link>
       </div>
 
-      {loading
-        ? <Spiner />
-        : pathname === '/' ? <BooksTable books={books} /> : <BooksCard books={books} />
+      {
+        loading
+          ? <Spiner />
+          : pathname === '/' ? <BooksTable books={books} /> : <BooksCard books={books} />
       }
+
+      {!loading && !books.length && (
+        <span className="text-xl mx-4">Books List is empty.</span>
+      )}
     </div>
   )
 }

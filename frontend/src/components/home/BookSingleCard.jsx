@@ -12,7 +12,7 @@ export const BookSingleCard = ({ book }) => {
 
   return (
     <div
-      className="border-2 border-gray-500 rounded-lg px-4 m-4 relative hover:shadow-xl"
+      className="border-2 border-gray-500 rounded-lg px-4 m-4 relative hover:shadow-xl flex flex-col justify-around"
     >
       <div className="flex justify-end mt-1">
         <h2 className="w-fit p-1 px-4 bg-red-300 rounded-lg">
@@ -22,13 +22,21 @@ export const BookSingleCard = ({ book }) => {
 
       <div className="flex justify-start items-center gap-x-2">
         <PiBookOpenTextLight className="text-red-300 text-2xl" />
-        <h2 className="my-1">{book.title}</h2>
+        <h2 className="my-1 font-semibold">{book.title}</h2>
       </div>
 
       <div className="flex justify-start items-center gap-x-2">
         <BiUserCircle className="text-red-300 text-2xl" />
         <h2 className='my-2'>{book.author}</h2>
       </div>
+
+      <p className='my-2 text-gray-600'>
+        {
+          book.description?.length > 100
+            ? book.description.substring(0, 100) + '...'
+            : book.description
+        }
+      </p>
 
       <div className="flex justify-between items-center gap-x-2 mt-4 p-4">
         <BiShow
