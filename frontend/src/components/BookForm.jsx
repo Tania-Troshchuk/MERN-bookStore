@@ -6,7 +6,7 @@ const fields = [
 
 export const BookForm = ({ book, handleBookFields, btnText, handleBtnClick }) => {
   return (
-    <div className="flex flex-col border-2 border-sky-400 rounded-xl w-full max-w-lg p-4 mx-auto">
+    <div className="flex flex-col border-4 border-sky-400 rounded-xl w-full max-w-lg p-4 mx-auto">
       {fields.map(item => (
         <div className="my-4" key={item.field}>
           <label className="text-xl mr-4 text-gray-500">{item.title}</label>

@@ -17,7 +17,7 @@ export const BookModal = ({ book, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 m-4 flex flex-col relative"
+        className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-8 m-4 flex flex-col relative"
         onClick={e => e.stopPropagation()}
       >
         <AiOutlineClose
@@ -33,7 +33,7 @@ export const BookModal = ({ book, onClose }) => {
 
         <div className="flex justify-start items-center gap-x-2">
           <PiBookOpenTextLight className="text-red-300 text-2xl" />
-          <h2 className="my-1">{book.title}</h2>
+          <h2 className="my-1 font-semibold">{book.title}</h2>
         </div>
 
         <div className="flex justify-start items-center gap-x-2">
