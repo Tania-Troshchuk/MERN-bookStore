@@ -10,10 +10,10 @@ export const CreateBook = () => {
   const [book, setBook] = useState({
     title: '',
     author: '',
-    publishYear: ''
+    publishYear: '',
+    description: null
   })
   const [loading, setLoading] = useState(false)
-
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
 
@@ -25,10 +25,15 @@ export const CreateBook = () => {
   }
 
   const handleSaveBook = () => {
+    const newBook = {
+      ...book,
+      description: book.description?.length ? book.description : null
+    }
+    
     setLoading(true)
 
     axios
-      .post('http://localhost:5050/api/books', book)
+      .post('http://localhost:5050/api/books', newBook)
       .then(() => {
         navigate(-1)
         enqueueSnackbar('Book created successfully', { variant: 'success' })
@@ -41,7 +46,7 @@ export const CreateBook = () => {
   }
 
   return (
-    <div className="p-4">
+    <div className="m-4 lg:mx-auto max-w-4xl lg:w-1/2">
       <BackButton />
 
       <h1 className="text-3xl my-4">Create Book</h1>

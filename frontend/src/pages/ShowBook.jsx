@@ -20,46 +20,57 @@ export const ShowBook = () => {
   }, [id])
 
   return (
-    <div className="p-4">
+    <div className="m-4 lg:mx-auto max-w-4xl lg:w-1/2">
       <BackButton />
 
-      <h1 className="text-3xl my-4">Show Book</h1>
+      <h1 className="text-3xl my-4 mx-auto">Show Book</h1>
 
-      {loading ? (
-        <Spiner />
-      ) : (
-        <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4">
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Id</span>
-            <span>{book._id}</span>
-          </div>
+      {loading
+        ? <Spiner />
+        : (
+          <div className="flex flex-col border-4 border-sky-400 p-4 mx-auto rounded-xl">
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Id:</span>
+              <span>{book._id}</span>
+            </div>
 
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Title</span>
-            <span>{book.title}</span>
-          </div>
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Title:</span>
+              <span>{book.title}</span>
+            </div>
 
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Author</span>
-            <span>{book.author}</span>
-          </div>
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Author:</span>
+              <span>{book.author}</span>
+            </div>
 
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Publish Year</span>
-            <span>{book.publishYear}</span>
-          </div>
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Publish Year:</span>
+              <span>{book.publishYear}</span>
+            </div>
 
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Create Time</span>
-            <span>{new Date(book.createdAt).toString()}</span>
-          </div>
+            {!!book.description?.length && (
+              <div className="my-4">
+                <span className="text-xl mr-4 text-gray-500">Description:</span>
+                <span>{book.description}</span>
+              </div>
+            )}
 
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Last Updated Time</span>
-            <span>{new Date(book.updatedAt).toString()}</span>
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Create Time:</span>
+              <span>{new Date(book.createdAt).toLocaleTimeString()}</span>
+              &nbsp;
+              <span>{new Date(book.createdAt).toLocaleDateString()}</span>
+            </div>
+
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Last Updated Time:</span>
+              <span>{new Date(book.updatedAt).toLocaleTimeString()}</span>
+              &nbsp;
+              <span>{new Date(book.updatedAt).toLocaleDateString()}</span>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   )
 }

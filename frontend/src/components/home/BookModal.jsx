@@ -17,7 +17,7 @@ export const BookModal = ({ book, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-8 m-4 flex flex-col relative"
+        className="w-[600px] max-w-full min-h-[300px] bg-white rounded-xl p-8 m-4 flex flex-col relative overflow-y-scroll"
         onClick={e => e.stopPropagation()}
       >
         <AiOutlineClose
@@ -40,6 +40,8 @@ export const BookModal = ({ book, onClose }) => {
           <BiUserCircle className="text-red-300 text-2xl" />
           <h2 className='my-2'>{book.author}</h2>
         </div>
+
+        <h4 className='my-2 text-gray-600'>{book.description}</h4>
       </div>
     </div>
   )
