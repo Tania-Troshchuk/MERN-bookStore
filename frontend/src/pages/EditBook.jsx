@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useSnackbar } from "notistack"
 import { BookForm } from "../components/BookForm"
 import { BASE_URL } from "../config"
+import { validation } from "../helpers/validation"
 
 export const EditBook = () => {
   const [book, setBook] = useState({
@@ -15,6 +16,12 @@ export const EditBook = () => {
     description: null
   })
   const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState({
+    title: null,
+    author: null,
+    publishYear: null,
+  })
+
   const { id } = useParams()
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
@@ -27,6 +34,9 @@ export const EditBook = () => {
   }
 
   const handleEditBook = () => {
+    const isValid = validation(book, setErrors)
+    if (!isValid) return
+
     const updatedBook = {
       ...book,
       description: book.description?.length ? book.description : null
@@ -81,6 +91,7 @@ export const EditBook = () => {
           handleBookFields={handleBookFields}
           btnText="Edit"
           handleBtnClick={handleEditBook}
+          errors={errors}
         />
       )}
     </div>
