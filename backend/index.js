@@ -8,12 +8,11 @@ import { errorHandler } from "./middleware/errorHandler.js";
 const app = express();
 
 app.use(express.json())
-app.use(cors())
-// app.use(cors({
-//   origin: 'http://localhost:3000',
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   allowedHeaders: ['Content-Type']
-// }))
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://book-store-ct8w.onrender.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+}))
 app.use('/api/books', bookRouter)
 app.use(errorHandler)
 
