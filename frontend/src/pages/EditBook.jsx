@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useSnackbar } from "notistack"
 import { BookForm } from "../components/BookForm"
+import { BASE_URL } from "../config"
 
 export const EditBook = () => {
   const [book, setBook] = useState({
@@ -34,7 +35,7 @@ export const EditBook = () => {
     setLoading(true)
 
     axios
-      .put(`http://localhost:5050/api/books/${id}`, updatedBook)
+      .put(`${BASE_URL}/api/books/${id}`, updatedBook)
       .then(() => {
         navigate(-1)
         enqueueSnackbar('Book edited successfully', { variant: 'success' })
@@ -50,7 +51,7 @@ export const EditBook = () => {
     setLoading(true)
 
     axios
-      .get(`http://localhost:5050/api/books/${id}`)
+      .get(`${BASE_URL}/api/books/${id}`)
       .then((res) => {
         setBook({
           title: res.data.title,

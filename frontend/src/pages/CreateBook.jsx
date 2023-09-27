@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useSnackbar } from "notistack"
 import { BookForm } from "../components/BookForm"
+import { BASE_URL } from "../config"
 
 export const CreateBook = () => {
   const [book, setBook] = useState({
@@ -33,7 +34,7 @@ export const CreateBook = () => {
     setLoading(true)
 
     axios
-      .post('http://localhost:5050/api/books', newBook)
+      .post(`${BASE_URL}/api/books`, newBook)
       .then(() => {
         navigate(-1)
         enqueueSnackbar('Book created successfully', { variant: 'success' })

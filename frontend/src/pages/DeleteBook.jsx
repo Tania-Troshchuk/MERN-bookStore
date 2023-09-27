@@ -4,6 +4,7 @@ import { BackButton } from "../components/BackButton"
 import { useNavigate, useParams } from "react-router-dom"
 import { useState } from "react"
 import { useSnackbar } from "notistack"
+import { BASE_URL } from "../config"
 
 export const DeleteBook = () => {
   const [loading, setLoding] = useState(false)
@@ -15,7 +16,7 @@ export const DeleteBook = () => {
     setLoding(true)
 
     axios
-      .delete(`http://localhost:5050/api/books/${id}`)
+      .delete(`${BASE_URL}/api/books/${id}`)
       .then(() => {
         enqueueSnackbar('Book deleted successfully', { variant: 'success' })
         navigate(-1)

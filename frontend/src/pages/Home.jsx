@@ -5,6 +5,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { MdOutlineAddBox } from 'react-icons/md'
 import { BooksTable } from "../components/home/BooksTable"
 import { BooksCard } from "../components/home/BooksCard"
+import { BASE_URL } from "../config"
 
 export const Home = () => {
   const [books, setBooks] = useState([])
@@ -15,7 +16,7 @@ export const Home = () => {
     setLoading(true)
 
     axios
-      .get('http://localhost:5050/api/books')
+      .get(`${BASE_URL}/api/books`)
       .then(res => setBooks(res.data.data))
       .catch(err => console.log(err))
       .finally(() => setLoading(false))
