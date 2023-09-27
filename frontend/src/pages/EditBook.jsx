@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Spiner } from "../components/Spiner"
+import { Spinner } from "../components/Spinner"
 import { BackButton } from "../components/BackButton"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -74,7 +74,7 @@ export const EditBook = () => {
       <h1 className="text-3xl my-4">Edit Book</h1>
 
       {loading ? (
-        <Spiner />
+        <Spinner />
       ) : (
         <BookForm
           book={book}

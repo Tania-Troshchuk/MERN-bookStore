@@ -13,7 +13,7 @@ export const BookForm = ({ book, handleBookFields, btnText, handleBtnClick }) =>
         <div className="my-4" key={item.field}>
           <label className="text-xl mr-4 text-gray-500">{item.title}</label>
           <input
-            type="text"
+            type={item.field === 'publishYear' ? "number" : "text"}
             className="border-2 border-gray-500 rounded-md px-4 py-2 w-full outline-none"
             value={book[item.field]}
             onChange={e => handleBookFields(item.field, e.target.value)}
