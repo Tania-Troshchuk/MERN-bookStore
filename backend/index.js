@@ -10,7 +10,11 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://book-store-ct8w.onrender.com'],
+  origin: [
+    'http://localhost:3000',
+    'http://127.0.0.1:5173',
+    'https://book-store-ct8w.onrender.com'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }))

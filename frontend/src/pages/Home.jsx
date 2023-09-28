@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
-import { Spiner } from "../components/Spiner"
+import { Spinner } from "../components/Spinner"
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { MdOutlineAddBox } from 'react-icons/md'
 import { BooksTable } from "../components/home/BooksTable"
@@ -52,7 +52,7 @@ export const Home = () => {
 
       {
         loading
-          ? <Spiner />
+          ? <Spinner />
           : pathname === '/' ? <BooksTable books={books} /> : <BooksCard books={books} />
       }
 

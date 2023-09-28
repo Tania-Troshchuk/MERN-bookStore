@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Spiner } from "../components/Spiner"
+import { Spinner } from "../components/Spinner"
 import { BackButton } from "../components/BackButton"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -27,7 +27,7 @@ export const ShowBook = () => {
       <h1 className="text-3xl my-4 mx-auto">Show Book</h1>
 
       {loading
-        ? <Spiner />
+        ? <Spinner />
         : (
           <div className="flex flex-col border-4 border-sky-400 p-4 mx-auto rounded-xl">
             <div className="my-4">

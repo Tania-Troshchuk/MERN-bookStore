@@ -6,18 +6,21 @@ const fields = [
   { title: 'Publish Year', field: 'publishYear' },
 ]
 
-export const BookForm = ({ book, handleBookFields, btnText, handleBtnClick }) => {
+export const BookForm = ({ book, handleBookFields, btnText, handleBtnClick, errors }) => {
   return (
     <div className="flex flex-col border-4 border-sky-400 rounded-xl w-full p-8 mx-auto">
       {fields.map(item => (
-        <div className="my-4" key={item.field}>
+        <div className="my-2 lg:my-4" key={item.field}>
           <label className="text-xl mr-4 text-gray-500">{item.title}</label>
           <input
-            type="text"
-            className="border-2 border-gray-500 rounded-md px-4 py-2 w-full outline-none"
+            type={item.field === 'publishYear' ? "number" : "text"}
+            className={`border-2 ${
+              errors[item.field] ? 'border-red-400': 'border-gray-500'
+            } rounded-md px-4 py-2 w-full outline-none`}
             value={book[item.field]}
             onChange={e => handleBookFields(item.field, e.target.value)}
           />
+          <span className="text-sm text-red-500">{errors[item.field]}</span>
         </div>
       ))}
 

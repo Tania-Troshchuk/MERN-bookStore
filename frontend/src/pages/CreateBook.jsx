@@ -1,11 +1,12 @@
 import axios from "axios"
-import { Spiner } from "../components/Spiner"
+import { Spinner } from "../components/Spinner"
 import { BackButton } from "../components/BackButton"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useSnackbar } from "notistack"
 import { BookForm } from "../components/BookForm"
 import { BASE_URL } from "../config"
+import { validation } from "../helpers/validation"
 
 export const CreateBook = () => {
   const [book, setBook] = useState({
@@ -15,6 +16,12 @@ export const CreateBook = () => {
     description: null
   })
   const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState({
+    title: null,
+    author: null,
+    publishYear: null,
+  })
+
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
 
@@ -26,11 +33,14 @@ export const CreateBook = () => {
   }
 
   const handleSaveBook = () => {
+    const isValid = validation(book, setErrors)
+    if (!isValid) return
+
     const newBook = {
       ...book,
       description: book.description?.length ? book.description : null
     }
-    
+
     setLoading(true)
 
     axios
@@ -53,13 +63,14 @@ export const CreateBook = () => {
       <h1 className="text-3xl my-4">Create Book</h1>
 
       {loading ? (
-        <Spiner />
+        <Spinner />
       ) : (
         <BookForm
           book={book}
           handleBookFields={handleBookFields}
           btnText="Save"
           handleBtnClick={handleSaveBook}
+          errors={errors}
         />
       )}
     </div>

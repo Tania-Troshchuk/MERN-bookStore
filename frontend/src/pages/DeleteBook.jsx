@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Spiner } from "../components/Spiner"
+import { Spinner } from "../components/Spinner"
 import { BackButton } from "../components/BackButton"
 import { useNavigate, useParams } from "react-router-dom"
 import { useState } from "react"
@@ -35,7 +35,7 @@ export const DeleteBook = () => {
       <h1 className="text-3xl my-4">Delete Book</h1>
 
       {loading ? (
-        <Spiner />
+        <Spinner />
       ) : (
         <div className="flex flex-col items-center border-4 border-sky-400 rounded-xl w-full p-8 mx-auto">
           <h3 className="text-2xl">Are you sure you want to delete this book?</h3>
