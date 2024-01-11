@@ -18,7 +18,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }))
-app.use('/api/books', bookRouter)
+app.use('/books', bookRouter)
 app.use(errorHandler)
 
 mongoose
